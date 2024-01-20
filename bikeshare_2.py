@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 from datetime import timedelta
 
-CITY_DATA = { 'chicago': 'c:/Users/phili/Udacity/Bikeshare/chicago.csv',
-              'new york': 'c:/Users/phili/Udacity/Bikeshare/new_york_city.csv',
-              'washington': 'c:/Users/phili/Udacity/Bikeshare/washington.csv' }
+# CITY_DATA dictionary defines the file name associated with each city.
+CITY_DATA = { 'chicago': 'chicago.csv',
+              'new york': 'new_york_city.csv',
+              'washington': 'washington.csv' }
 
 def get_filters():
     """Asks user to specify a city, month, and day to analyze.
@@ -16,7 +17,7 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """ 
     print('\nHello! Let\'s explore some US bikeshare data!')
-    # get user input for city
+    # get user input for city and test the input validity 
     while True:
         try: 
             city = input('Would you like data on Washington, New York or Chicago?\nPlease type the city name: ').lower()
@@ -28,7 +29,7 @@ def get_filters():
         except ValueError:
             print('\nInvalid input, please try that again.')
         
-    # get user input for month
+    # get user input for month and test the input validity
     while True:
         try: 
             month = str(input('Which month would you like to get input on?\nPlease type a month from January to June or \"All\": ')).lower()
@@ -40,7 +41,7 @@ def get_filters():
         except ValueError:
             print('\nInvalid input, please try that again.')
         
-    # get user input for day of week
+    # get user input for day of week and test the input validity
     while True:
         try: 
             day = str(input('\nWhich day would you like to get input on?\nPlease type any day of the week or \"All\": ')).lower()
@@ -99,15 +100,15 @@ def time_stats(df):
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
-    # display the most common month
+    # display the most common month using mode
     mode_month = df['Month'].mode()[0]
     print(f'The most common month is {mode_month}.')
 
-    # display the most common day of week
+    # display the most common day of week using mode
     mode_day = df['Day of week'].mode()[0]
     print(f'The most common day of the week is {mode_day}.')
     
-    # display the most common start hour
+    # display the most common start hour using mode
     mode_hour = df['Hour'].mode()[0]
     print(f'The most common hour of the day is {mode_hour}.')
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -119,17 +120,18 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # display most commonly used start station
+    # display most commonly used start station using mode
     mode_start = df['Start Station'].mode()[0]
     print(f'Most commonly used start station is {mode_start}.')
     
-    # display most commonly used end station
+    # display most commonly used end station using mode
     mode_end = df['End Station'].mode()[0]
     print(f'Most commonly used end station is {mode_end}.')
     
     # display most frequent combination of start station and end station trip
+    # first, columns 'Start Station' and 'End Station' are joined to generate a string for entire journey
     df['Trip'] = df['Start Station'].astype(str)+(' to ')+df['End Station'].astype(str)
-    mode_trip = df['Trip'].mode()[0]
+    mode_trip = df['Trip'].mode()[0] # mode used to find the most common complete journey
     print(f'The most frequent combination of start and end station: {mode_trip}')
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
@@ -142,6 +144,8 @@ def seconds_to_hms(seconds):
 
 def trip_duration_stats(df):
     """Display statistics on the total and average trip duration."""
+   
+    # start_time to calculate computation time 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
     
@@ -157,6 +161,8 @@ def trip_duration_stats(df):
     mean_travel_time = int(mean_travel_time.total_seconds())
     hours, minutes, seconds = seconds_to_hms(mean_travel_time)
     print(f'The average time travelled is {hours} hours, {minutes} minutes and {seconds} seconds.')
+    
+    # complete calculation of computation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
  
@@ -164,9 +170,10 @@ def user_stats(df):
     """Display statistics on bikeshare users.
     Checks for the 'Gender' and 'Birth Year' columns, as Washington dataset does not cpontain this data.
     """
-
+    # start_time to calculate computation time
     print('\nCalculating User Stats...\n')
     start_time = time.time()
+    
     # Display counts of user types
     user_types = df['User Type'].value_counts()
     print(user_types)
@@ -183,6 +190,7 @@ def user_stats(df):
         mode_age = int(df['Birth Year'].mode()[0])
         print(f'\nThe oldest traveller was born in {oldest}, the youngest in {youngest} and the most common birth year is {mode_age}.')
     
+    # complete calcualtion of computation time
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -191,7 +199,7 @@ def raw_data(df):
     If 'Y', data is displayed 5 lines at a time.
     Continue iterating through raw data 5 lines at a time until user inputs 'N'.
     """
-
+    # ask user if they would like to view the raw data
     while True:
         try:
             raw_data = str(input('Would you like to see raw data? (Y/N): ')).lower()
@@ -202,7 +210,7 @@ def raw_data(df):
                 print('\nInvalid input, please try that again.')
         except ValueError:
             print('\nInvalid input, please try that again.')
-    # commence iterating through data 5 lines at a time
+    # commence iterating through raw data 5 lines at a time
     if raw_data != 'n':
         start_index = 0
         while start_index<(len(df)-5):
