@@ -30,9 +30,9 @@ The **Bikeshare Project** script was written on **14 January 2024**.
 * `washington.csv`
 
 ## Credits
-A bit thank you to the instructors at [Udacity](https://www.udacity.com/) have put together a great course and I've learned so much from them.
+A big thank you to the instructors at [Udacity](https://www.udacity.com/) who have put together a great course...I've learned so much from them!
 
-Thanks to [Motivate](https://motivateco.com/) for provided the raw data.
+Thanks to [Motivate](https://motivateco.com/) for providing the raw data.
 
 The `seconds_to_hms` function was courtesy of ChatGPT.
 
