@@ -93,7 +93,6 @@ def load_data(city, month, day):
     
     return df
 
-
 def time_stats(df):
     """Displays statistics on the most frequent times of travel."""
     print('\nCalculating The Most Frequent Times of Travel...\n')
@@ -112,7 +111,6 @@ def time_stats(df):
     print(f'The most common hour of the day is {mode_hour}.')
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-
 
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
@@ -245,7 +243,6 @@ def main():
         restart = input('\nWould you like to restart? (Y/N): ').lower()
         if restart != 'y':
             break
-
 
 if __name__ == "__main__":
 	main()
