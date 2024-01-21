@@ -4,10 +4,20 @@ import pandas as pd
 import numpy as np
 from datetime import timedelta
 
+<<<<<<< HEAD
 # CITY_DATA dictionary defines the file name associated with each city.
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york': 'new_york_city.csv',
               'washington': 'washington.csv' }
+||||||| parent of c0ea905 (Changed csv filename path in bikeshare_2)
+CITY_DATA = { 'chicago': 'c:/Users/phili/Udacity/Bikeshare/chicago.csv',
+              'new york': 'c:/Users/phili/Udacity/Bikeshare/new_york_city.csv',
+              'washington': 'c:/Users/phili/Udacity/Bikeshare/washington.csv' }
+=======
+CITY_DATA = { 'chicago': 'chicago.csv',
+              'new york': 'new_york_city.csv',
+              'washington': 'washington.csv' }
+>>>>>>> c0ea905 (Changed csv filename path in bikeshare_2)
 
 def get_filters():
     """Asks user to specify a city, month, and day to analyze.
