@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 from datetime import timedelta
 
-CITY_DATA = { 'chicago': 'c:/Users/phili/Udacity/Bikeshare/chicago.csv',
-              'new york': 'c:/Users/phili/Udacity/Bikeshare/new_york_city.csv',
-              'washington': 'c:/Users/phili/Udacity/Bikeshare/washington.csv' }
+CITY_DATA = { 'chicago': 'chicago.csv',
+              'new york': 'new_york_city.csv',
+              'washington': 'washington.csv' }
 
 def get_filters():
     """Asks user to specify a city, month, and day to analyze.
